@@ -61,12 +61,69 @@
 
     <li class="apidocModuleLi"><a href="#apidoc.module.sparkly">module sparkly</a><ol>
 
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.sparkly.sparkly">
+            function <span class="apidocSignatureSpan"></span>sparkly
+            <span class="apidocSignatureSpan">(numbers, opts)</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.sparkly" id="apidoc.module.sparkly">module sparkly</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.sparkly.sparkly" id="apidoc.element.sparkly.sparkly">
+        function <span class="apidocSignatureSpan"></span>sparkly
+        <span class="apidocSignatureSpan">(numbers, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sparkly = function (numbers, opts) {
+	if (!Array.isArray(numbers)) {
+		throw new TypeError(&#x27;Expected an array&#x27;);
+	}
+
+	opts = opts || {};
+
+	var ticks = [&#x27;▁&#x27;, &#x27;▂&#x27;, &#x27;▃&#x27;, &#x27;▄&#x27;, &#x27;▅&#x27;, &#x27;▆&#x27;, &#x27;▇&#x27;, &#x27;█&#x27;];
+	var color = [[5, 5, 4], [5, 5, 3], [5, 5, 0], [5, 4, 0], [5, 3, 0], [5, 2, 0], [5, 1, 0], [5, 0, 0]];
+	var finiteNumbers = numbers.filter(isFinite);
+	var min = typeof opts.min === &#x27;number&#x27; ? opts.min : Math.min.apply(null, finiteNumbers);
+	var max = typeof opts.max === &#x27;number&#x27; ? opts.max : Math.max.apply(null, finiteNumbers);
+
+	// use a high tick if data is constant and max is not equal to 0
+	if (min === max &#x26;&#x26; max !== 0) {
+		ticks = [ticks[4]];
+	}
+
+	return numbers.map(function (el) {
+		if (!isFinite(el)) {
+			return &#x27; &#x27;;
+		}
+
+		var tickIndex = Math.ceil((el / max) * ticks.length) - 1;
+
+		if (max === 0 || tickIndex &#x3c; 0) {
+			tickIndex = 0;
+		}
+
+		if (opts.style === &#x27;fire&#x27;) {
+			return colors.fg.getRgb.apply(colors.fg, color[tickIndex]) + ticks[tickIndex] + colors.reset;
+		}
+
+		return ticks[tickIndex];
+	}).join(&#x27;&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 </div>
 

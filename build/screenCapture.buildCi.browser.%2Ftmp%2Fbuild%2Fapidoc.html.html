@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/sindresorhus/sparkly"
-
-    >sparkly (v3.1.2)</a>
+    <a href="https://github.com/sindresorhus/sparkly">sparkly (v3.1.2)</a>
 </h1>
-<h4>Generate sparklines ▁▂▃▅▂▇</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<h4>Generate sparklines â–â–‚â–ƒâ–…â–‚â–‡</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.sparkly">module sparkly</a><ol>
 
@@ -87,39 +80,39 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">sparkly = function (numbers, opts) {
 	if (!Array.isArray(numbers)) {
-		throw new TypeError(&#x27;Expected an array&#x27;);
+		throw new TypeError('Expected an array');
 	}
 
 	opts = opts || {};
 
-	var ticks = [&#x27;▁&#x27;, &#x27;▂&#x27;, &#x27;▃&#x27;, &#x27;▄&#x27;, &#x27;▅&#x27;, &#x27;▆&#x27;, &#x27;▇&#x27;, &#x27;█&#x27;];
+	var ticks = ['â–', 'â–‚', 'â–ƒ', 'â–„', 'â–…', 'â–†', 'â–‡', 'â–ˆ'];
 	var color = [[5, 5, 4], [5, 5, 3], [5, 5, 0], [5, 4, 0], [5, 3, 0], [5, 2, 0], [5, 1, 0], [5, 0, 0]];
 	var finiteNumbers = numbers.filter(isFinite);
-	var min = typeof opts.min === &#x27;number&#x27; ? opts.min : Math.min.apply(null, finiteNumbers);
-	var max = typeof opts.max === &#x27;number&#x27; ? opts.max : Math.max.apply(null, finiteNumbers);
+	var min = typeof opts.min === 'number' ? opts.min : Math.min.apply(null, finiteNumbers);
+	var max = typeof opts.max === 'number' ? opts.max : Math.max.apply(null, finiteNumbers);
 
 	// use a high tick if data is constant and max is not equal to 0
-	if (min === max &#x26;&#x26; max !== 0) {
+	if (min === max &amp;&amp; max !== 0) {
 		ticks = [ticks[4]];
 	}
 
 	return numbers.map(function (el) {
 		if (!isFinite(el)) {
-			return &#x27; &#x27;;
+			return ' ';
 		}
 
 		var tickIndex = Math.ceil((el / max) * ticks.length) - 1;
 
-		if (max === 0 || tickIndex &#x3c; 0) {
+		if (max === 0 || tickIndex &lt; 0) {
 			tickIndex = 0;
 		}
 
-		if (opts.style === &#x27;fire&#x27;) {
+		if (opts.style === 'fire') {
 			return colors.fg.getRgb.apply(colors.fg, color[tickIndex]) + ticks[tickIndex] + colors.reset;
 		}
 
 		return ticks[tickIndex];
-	}).join(&#x27;&#x27;);
+	}).join('');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -133,3 +126,4 @@
     ]
 </div>
 </div>
+</body></html>
